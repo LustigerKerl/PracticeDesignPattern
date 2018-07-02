@@ -1,4 +1,4 @@
-package com.school.lwh.practicedesignpattern.templatemethod;
+package com.school.lwh.practicedesignpattern.templateMethod;
 
 public class DefaultGameConnectHelper extends AbstGameConnectHelper {
     @Override

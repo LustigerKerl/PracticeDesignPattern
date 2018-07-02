@@ -1,4 +1,4 @@
-package com.school.lwh.practicedesignpattern.templatemethod;
+package com.school.lwh.practicedesignpattern.templateMethod;
 
 public abstract class AbstGameConnectHelper {
     protected abstract String doSecurity(String string);

@@ -8,30 +8,37 @@ import android.widget.Toast;
 
 import com.school.lwh.practicedesignpattern.Adapter.Adapter;
 import com.school.lwh.practicedesignpattern.Adapter.AdapterImpl;
+import com.school.lwh.practicedesignpattern.factoryMethod.concrete.HpCreator;
+import com.school.lwh.practicedesignpattern.factoryMethod.concrete.MpCreator;
+import com.school.lwh.practicedesignpattern.factoryMethod.framework.Item;
+import com.school.lwh.practicedesignpattern.factoryMethod.framework.ItemCreator;
 import com.school.lwh.practicedesignpattern.strategy.Axe;
 import com.school.lwh.practicedesignpattern.strategy.GameCharacter;
 import com.school.lwh.practicedesignpattern.strategy.Knife;
 import com.school.lwh.practicedesignpattern.strategy.Sword;
-import com.school.lwh.practicedesignpattern.templatemethod.AbstGameConnectHelper;
-import com.school.lwh.practicedesignpattern.templatemethod.DefaultGameConnectHelper;
+import com.school.lwh.practicedesignpattern.templateMethod.DefaultGameConnectHelper;
 
 public class MainActivity extends AppCompatActivity {
+    ItemCreator itemCreator;
+    Item item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn1=findViewById(R.id.button);
-        Button btn2=findViewById(R.id.button2);
-        Button btn3=findViewById(R.id.button3);
-        Button btn4=findViewById(R.id.button4);
-        Button btn5=findViewById(R.id.button5);
-        Button btn6=findViewById(R.id.button6);
+        Button btn1 = findViewById(R.id.button);
+        Button btn2 = findViewById(R.id.button2);
+        Button btn3 = findViewById(R.id.button3);
+        Button btn4 = findViewById(R.id.button4);
+        Button btn5 = findViewById(R.id.button5);
+        Button btn6 = findViewById(R.id.button6);
+        Button btn7 = findViewById(R.id.button7);
 
-        final GameCharacter gameCharacter=new GameCharacter();
-        final Adapter adapter=new AdapterImpl();
-        final DefaultGameConnectHelper helper=new DefaultGameConnectHelper();
+        final GameCharacter gameCharacter = new GameCharacter();
+        final Adapter adapter = new AdapterImpl();
+        final DefaultGameConnectHelper helper = new DefaultGameConnectHelper();
+
         gameCharacter.attack();
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 helper.requestConnection("아이디 암호 등 접속 정보");
+            }
+        });
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemCreator = new HpCreator();
+                item = itemCreator.create();
+                item.use();
+
+                itemCreator = new MpCreator();
+                item=itemCreator.create();
+                item.use();
             }
         });
     }
